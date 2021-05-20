@@ -23,15 +23,21 @@ let conteudo2 = {
 
 let conteudos = [conteudo, conteudo2];
 
-
+let conteudoBebida = {
+    titulo: "Quais os tipos de bebidas são indispensáveis em um churrasco?",
+    texto: "O churrasco foi quase perfeito. Ótimos cortes foram escolhidos, os amigos se divertiram, a música foi certeira e os acompanhamentos cumpriram perfeitamente seu papel. Só que faltou alguma coisa para que o evento fosse perfeito: as bebidas, que são fundamentais para o sucesso absoluto desse momento. Se no churrasco as opções de bebidas forem mínimas, não agradarem a todos os convidados e ainda estiverem quentes, provavelmente a avaliação do seu evento não será boa. Para evitar que qualquer tipo de problema aconteça, o churrasqueiro precisa ter em mente quais são as bebidas indispensáveis para este momento. E é para isso que criamos esse post! Nele, você encontrará quais são os principais tipos de bebidas que garantirão por completo o sucesso de seu churrasco."
+}
 
 app.get("/", (request, response) => {
     //response.sendFile(path.join(__dirname, "./static/index.html"));
-    response.render("index", { cont: conteudos });
+    response.render("layout/template", { cont: conteudos, conteudo: "index" });
 });
 
+let dados = require('./dados/bebidas.json');
+
 app.get("/bebidas", (request, response) => {
-    response.sendFile(path.join(__dirname, "./static/html/bebidas.html"));
+    //response.sendFile(path.join(__dirname, "./static/html/bebidas.html"));
+    response.render("layout/template", { produtos: dados, conteudoBebida, conteudo: "bebidas" });
 });
 
 app.get("/carnes", (request, response) => {
